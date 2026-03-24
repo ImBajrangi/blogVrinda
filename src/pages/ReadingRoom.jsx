@@ -90,35 +90,35 @@ const ReadingRoom = () => {
             </section>
 
             {/* Transcript / Context Area */}
-            <section className="relative z-20 bg-[#FAFAFA] dark:bg-surface-light pt-32 pb-24 px-6 md:px-12 transition-colors duration-500">
-                <article className="max-w-[680px] mx-auto text-lg leading-[1.8] text-zinc-950 dark:text-text-main space-y-12">
-                    <p className="text-xl md:text-2xl leading-relaxed text-zinc-500 dark:text-text-muted first-letter:text-5xl first-letter:font-display first-letter:mr-2 first-letter:float-left first-letter:text-zinc-900 dark:first-letter:text-cinema-dark font-light italic">
+            <section className="relative z-20 bg-[var(--bg-main)] pt-32 pb-24 px-6 md:px-12 transition-colors duration-500">
+                <article className="max-w-[680px] mx-auto text-lg leading-[1.8] text-[var(--text-main)] space-y-12">
+                    <p className="text-xl md:text-2xl leading-relaxed text-zinc-500 dark:text-white/40 first-letter:text-5xl first-letter:font-display first-letter:mr-2 first-letter:float-left first-letter:text-zinc-900 dark:first-letter:text-white font-light italic">
                         {post.excerpt}
                     </p>
 
                     {post.sanskrit && (
-                        <div className="my-16 py-12 px-8 border-y border-zinc-200 dark:border-cinema-dark/10 relative group bg-zinc-100/50 dark:bg-white/5 backdrop-blur-sm rounded-xl transition-colors">
-                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FAFAFA] dark:bg-surface-light px-4 font-display text-[11px] uppercase tracking-[4px] text-primary transition-colors">Sacred Sanskrit</span>
-                            <div className="text-2xl md:text-3xl text-center font-serif italic leading-relaxed text-zinc-900 dark:text-cinema-dark selection:bg-primary/20">
+                        <div className="my-16 py-12 px-8 border-y border-zinc-200 dark:border-white/10 relative group bg-zinc-100/50 dark:bg-white/5 backdrop-blur-sm rounded-xl transition-colors">
+                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--bg-main)] px-4 font-display text-[11px] uppercase tracking-[4px] text-primary transition-colors">Sacred Sanskrit</span>
+                            <div className="text-2xl md:text-3xl text-center font-serif italic leading-relaxed text-zinc-900 dark:text-white selection:bg-primary/20">
                                 {post.sanskrit}
                             </div>
                         </div>
                     )}
                     
                     {post.hindi && (
-                        <div className="hindi-content font-hindi text-2xl md:text-3xl leading-[1.6] text-zinc-800 dark:text-text-main/90 mb-16 border-l-2 border-primary/30 pl-8 py-4 bg-zinc-100 dark:bg-white/30 rounded-r-2xl transition-colors">
+                        <div className="hindi-content font-hindi text-2xl md:text-3xl leading-[1.6] text-zinc-800 dark:text-white/90 mb-16 border-l-2 border-primary/30 pl-8 py-4 bg-zinc-100 dark:bg-white/5 rounded-r-2xl transition-colors">
                             {post.hindi}
                         </div>
                     )}
 
                     {post.english && (
-                        <div className="prose-wisdom rich-text whitespace-pre-line text-zinc-900 dark:text-text-main text-lg md:text-xl font-light leading-relaxed">
+                        <div className="prose-wisdom rich-text whitespace-pre-line text-zinc-900 dark:text-white text-lg md:text-xl font-light leading-relaxed">
                             {post.english}
                         </div>
                     )}
 
                     {!post.hindi && !post.english && (
-                        <div className="prose-wisdom rich-text whitespace-pre-line text-zinc-900 dark:text-text-main text-lg md:text-xl font-light leading-relaxed">
+                        <div className="prose-wisdom rich-text whitespace-pre-line text-zinc-900 dark:text-white text-lg md:text-xl font-light leading-relaxed">
                             {post.content || "Silence is the language of the soul..."}
                         </div>
                     )}
@@ -129,7 +129,7 @@ const ReadingRoom = () => {
                             className="w-full h-auto rounded-[32px] grayscale hover:grayscale-0 transition-all duration-1000 object-cover shadow-2xl" 
                             alt={post.title} 
                         />
-                        <figcaption className="mt-6 text-center text-[13px] uppercase tracking-[2px] text-zinc-400 dark:text-text-muted font-medium italic opacity-60">The observer and the observed merge into one.</figcaption>
+                        <figcaption className="mt-6 text-center text-[13px] uppercase tracking-[2px] text-zinc-400 dark:text-white/30 font-medium italic opacity-60">The observer and the observed merge into one.</figcaption>
                     </figure>
                 </article>
             </section>
