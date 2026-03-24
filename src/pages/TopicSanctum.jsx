@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useWisdom } from '../hooks/useWisdom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
+import LoadingDots from '../components/LoadingDots'
 
 const TopicSanctum = () => {
     const { category } = useParams();
-    const { posts, categories, loading } = useWisdom();
+    const { posts, categories, loading, loadingMore, hasMore, loadMore } = useWisdom(category);
+    const loadMoreRef = useRef(null);
+    const isInView = useInView(loadMoreRef, { margin: "200px" });
 
-    if (loading) return <div className="p-20 text-center font-display italic animate-pulse">Seeking topics in the silence...</div>;
+    useEffect(() => {
+        if (isInView && hasMore && !loadingMore && posts.length > 0) {
+            loadMore();
+        }
+    }, [isInView, hasMore, loadingMore, posts.length]);
+
+    if (loading) return <div className="p-20 text-center font-display italic animate-pulse text-zinc-400">Seeking topics in the silence...</div>;
 
     const topics = categories.length > 0 ? categories.map(c => c.name) : ["Meditation", "Non-Duality", "Dharma"];
     const currentTopic = category || (topics.length > 0 ? topics[0] : "Meditation");
@@ -69,7 +78,7 @@ const TopicSanctum = () => {
                                         </div>
 
                                         <div className="flex flex-col divide-y divide-zinc-200 dark:divide-white/10">
-                                            {filteredPosts.map((post) => (
+                                            {posts.map((post) => (
                                                 <Link 
                                                     key={post.id} 
                                                     to={`/post/${post.slug}`} 
@@ -93,13 +102,16 @@ const TopicSanctum = () => {
                                                     </div>
                                                 </Link>
                                             ))}
-                                            {filteredPosts.length === 0 && (
+                                            {posts.length === 0 && (
                                                 <p className="py-20 text-center text-zinc-400 dark:text-white/40 italic">The archives for {currentTopic} are yet to be transcribed.</p>
                                             )}
                                         </div>
 
-                                        <div className="flex justify-center mt-20 mb-32">
-                                            <div className="w-2 h-2 rounded-full bg-zinc-200 dark:bg-white/10"></div>
+                                        <div ref={loadMoreRef} className="py-20 flex flex-col items-center">
+                                            {loadingMore && <LoadingDots />}
+                                            {!hasMore && posts.length > 0 && (
+                                                <div className="w-16 h-[1px] bg-zinc-200 dark:bg-white/10"></div>
+                                            )}
                                         </div>
                                     </motion.div>
                                 </AnimatePresence>

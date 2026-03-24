@@ -35,12 +35,18 @@ const mapContentToPost = (item) => {
 };
 
 export const api = {
-    async fetchPosts() {
+    async fetchPosts(from = 0, to = 9, category = null) {
         try {
-            const { data, error } = await supabase
+            let queryBuilder = supabase
                 .from('blogvrinda')
                 .select('*')
                 .order('created_at', { ascending: false });
+
+            if (category) {
+                queryBuilder = queryBuilder.eq('category', category);
+            }
+
+            const { data, error } = await queryBuilder.range(from, to);
 
             if (error) throw error;
             return data.map(mapContentToPost);

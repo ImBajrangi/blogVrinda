@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useWisdom } from '../hooks/useWisdom'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
+import LoadingDots from '../components/LoadingDots'
 
 const HomeArchive = () => {
-    const { posts, loading } = useWisdom();
+    const { posts, loading, loadingMore, hasMore, loadMore } = useWisdom();
+    const loadMoreRef = React.useRef(null);
+    const isInView = useInView(loadMoreRef, { margin: "200px" });
+
+    useEffect(() => {
+        if (isInView && hasMore && !loadingMore && posts.length > 0) {
+            loadMore();
+        }
+    }, [isInView, hasMore, loadingMore, posts.length]);
 
     if (loading) return <div className="flex items-center justify-center min-h-[60vh] font-display italic text-text-muted">Awakening archives...</div>;
 
@@ -96,20 +105,18 @@ const HomeArchive = () => {
                     })}
                 </div>
 
-                {/* End of Path */}
-                <div className="w-full h-[1px] bg-zinc-200 dark:bg-white/10 mt-40 relative">
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FAFAFA] dark:bg-[#0A0A0A] px-10 text-zinc-400 dark:text-white/40 text-[11px] tracking-[6px] uppercase italic transition-colors duration-500">
-                        End of the Path
-                    </div>
+                {/* Infinite Scroll Trigger & Animation */}
+                <div ref={loadMoreRef} className="py-20">
+                    {loadingMore && <LoadingDots />}
+                    {!hasMore && posts.length > 0 && (
+                        <div className="w-full h-[1px] bg-zinc-200 dark:bg-white/10 mt-20 relative">
+                            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FAFAFA] dark:bg-[#0A0A0A] px-10 text-zinc-400 dark:text-white/40 text-[11px] tracking-[6px] uppercase italic transition-colors duration-500">
+                                End of the Path
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
-
-            {/* Load More Emulator */}
-            <div className="mt-24 flex justify-center">
-                <button className="w-16 h-16 rounded-full border border-zinc-200 dark:border-white/10 flex items-center justify-center text-zinc-900 dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 group">
-                    <span className="material-symbols-outlined text-2xl group-hover:animate-bounce">arrow_downward</span>
-                </button>
-            </div>
         </main>
     )
 }
