@@ -63,7 +63,7 @@ export const useWisdom = (initialCategory = null) => {
     };
 
     return {
-        posts: visiblePosts,
+        posts: posts,
         categories,
         loading,
         loadingMore,
