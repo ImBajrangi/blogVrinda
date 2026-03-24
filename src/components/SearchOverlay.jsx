@@ -46,8 +46,8 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                             />
-                            <div className="absolute right-0 bottom-10 text-primary dark:text-[#d4af37]">
-                                <span className="material-symbols-outlined text-4xl">travel_explore</span>
+                            <div className="absolute right-0 bottom-10 text-zinc-400 dark:text-white/40">
+                                <span className="material-symbols-outlined text-4xl">search</span>
                             </div>
                         </motion.div>
 
@@ -72,7 +72,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                                         className="block group"
                                     >
                                         <span className="block text-zinc-400 dark:text-white/40 text-[11px] uppercase tracking-[3px] font-bold mb-2 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors">{post.topic}</span>
-                                        <h3 className="text-3xl md:text-4xl font-normal text-zinc-900 dark:text-white group-hover:italic group-hover:text-primary transition-all duration-300" style={{ fontFamily: "'EB Garamond', serif" }}>
+                                        <h3 className="text-3xl md:text-4xl font-normal text-zinc-900 dark:text-white group-hover:italic group-hover:text-black dark:group-hover:text-white transition-all duration-300" style={{ fontFamily: "'EB Garamond', serif" }}>
                                             {post.title}
                                         </h3>
                                     </Link>

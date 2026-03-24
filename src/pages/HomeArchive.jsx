@@ -32,8 +32,8 @@ const HomeArchive = () => {
                             />
                         </div>
                         <div className="lg:col-span-4 flex flex-col justify-center order-1 lg:order-2 pl-0 lg:pl-4 transition-all duration-500">
-                            <p className="text-primary text-[13px] font-medium tracking-[0.2em] uppercase mb-6 flex items-center gap-3">
-                                <span className="w-8 h-[1px] bg-primary transition-all group-hover:w-12"></span>
+                            <p className="text-zinc-500 dark:text-white/50 text-[13px] font-medium tracking-[0.2em] uppercase mb-6 flex items-center gap-3">
+                                <span className="w-8 h-[1px] bg-zinc-400 dark:bg-white/20 transition-all group-hover:w-12 group-hover:bg-black dark:group-hover:bg-white"></span>
                                 {featuredPost.date} · {featuredPost.topic}
                             </p>
                             <h1 className={`text-5xl md:text-[64px] font-normal leading-[1.1] text-zinc-900 dark:text-white mb-8 title-hover-italic transition-all duration-700 ${isHindi(featuredPost.title) ? 'font-hindi' : 'font-display'}`}>
@@ -42,7 +42,7 @@ const HomeArchive = () => {
                             <p className={`text-zinc-600 dark:text-white/60 text-lg leading-[1.8] mb-8 line-clamp-3 ${isHindi(featuredPost.excerpt) ? 'font-hindi' : 'font-light'}`}>
                                 {featuredPost.excerpt}
                             </p>
-                            <div className="flex items-center gap-3 text-sm font-medium text-zinc-900 dark:text-white group-hover:text-primary transition-colors">
+                            <div className="flex items-center gap-3 text-sm font-medium text-zinc-900 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors">
                                 <span className="tracking-[2px] uppercase">Begin Journey</span>
                                 <span className="material-symbols-outlined text-sm transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
                             </div>
@@ -65,7 +65,7 @@ const HomeArchive = () => {
                     const aspectRatio = aspectRatios[idx % aspectRatios.length];
                     
                     return (
-                        <article key={idx} className="masonry-item group cursor-pointer bg-white dark:bg-white/5 p-8 rounded-3xl border border-zinc-200 dark:border-white/10 hover:border-primary transition-all duration-500 mb-16 break-inside-avoid">
+                        <article key={idx} className="masonry-item group cursor-pointer bg-white dark:bg-white/5 p-8 rounded-3xl border border-zinc-200 dark:border-white/10 hover:border-black dark:hover:border-white transition-all duration-500 mb-16 break-inside-avoid">
                             <Link to={`/post/${post.slug}`}>
                                 <div className={`w-full ${aspectRatio} overflow-hidden rounded-[32px] mb-8 relative`}>
                                     <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale-img transform group-hover:scale-105 transition-transform duration-1000" />
@@ -74,7 +74,7 @@ const HomeArchive = () => {
                                     <p className="text-zinc-400 dark:text-white/40 text-[11px] font-medium tracking-[2px] uppercase">
                                         {post.date} · {post.topic}
                                     </p>
-                                    <h3 className={`text-3xl font-normal leading-[1.2] text-zinc-900 dark:text-white title-hover-italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
+                                    <h3 className={`text-3xl font-normal leading-[1.2] text-zinc-900 dark:text-white group-hover:text-black dark:group-hover:text-white title-hover-italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
                                         {post.title}
                                     </h3>
                                     <p className={`text-zinc-600 dark:text-white/60 text-base leading-relaxed mt-2 line-clamp-2 ${isHindi(post.excerpt) ? 'font-hindi' : ''}`}>
