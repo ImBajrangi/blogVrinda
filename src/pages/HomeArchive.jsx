@@ -24,7 +24,7 @@ const HomeArchive = () => {
             {featuredPost && (
                 <section className="mb-32 cursor-pointer group">
                     <Link to={`/post/${featuredPost.slug}`} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                        <div className="lg:col-span-8 h-[400px] lg:h-[600px] w-full overflow-hidden rounded-full order-2 lg:order-1 relative">
+                        <div className="lg:col-span-8 h-[400px] lg:h-[600px] w-full overflow-hidden rounded-[32px] order-2 lg:order-1 relative">
                             <img 
                                 alt={featuredPost.title} 
                                 className="w-full h-full object-cover grayscale-img transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-in-out" 
@@ -67,7 +67,7 @@ const HomeArchive = () => {
                     return (
                         <article key={idx} className="masonry-item group cursor-pointer bg-white dark:bg-white/5 p-8 rounded-3xl border border-zinc-200 dark:border-white/10 hover:border-primary transition-all duration-500 mb-16 break-inside-avoid">
                             <Link to={`/post/${post.slug}`}>
-                                <div className={`w-full ${aspectRatio} overflow-hidden rounded-full mb-8 relative`}>
+                                <div className={`w-full ${aspectRatio} overflow-hidden rounded-[32px] mb-8 relative`}>
                                     <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale-img transform group-hover:scale-105 transition-transform duration-1000" />
                                 </div>
                                 <div className="flex flex-col gap-4 px-2">
