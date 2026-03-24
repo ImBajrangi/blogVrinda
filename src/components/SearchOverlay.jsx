@@ -30,7 +30,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                             onClick={onClose} 
                             className="group flex h-12 w-12 items-center justify-center transition-all duration-500"
                         >
-                            <span className="material-symbols-outlined text-zinc-400 dark:text-white/40 group-hover:text-zinc-900 dark:group-hover:text-white text-4xl transform group-hover:rotate-90 transition-all duration-500">close</span>
+                            <span className="material-symbols-outlined text-zinc-500 dark:text-white/40 group-hover:text-zinc-950 dark:group-hover:text-white text-4xl transform group-hover:rotate-90 transition-all duration-500">close</span>
                         </button>
                     </div>
                     
@@ -44,19 +44,19 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                                 autoFocus
                                 type="text" 
                                 placeholder="What do you seek?" 
-                                className="w-full bg-transparent border-none py-8 pr-16 text-4xl md:text-6xl lg:text-[100px] font-normal text-zinc-900 dark:text-white outline-none focus:ring-0 placeholder:italic placeholder:opacity-20 font-display leading-tight"
+                                className="w-full bg-transparent border-none py-8 pr-16 text-4xl md:text-6xl lg:text-[100px] font-normal text-zinc-950 dark:text-white outline-none focus:ring-0 placeholder:italic placeholder:text-zinc-300 dark:placeholder:text-white/20 font-display leading-tight"
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                             />
-                            <div className="absolute right-0 bottom-1/2 translate-y-1/2 text-zinc-300 dark:text-white/20">
+                            <div className="absolute right-0 bottom-1/2 translate-y-1/2 text-zinc-400 dark:text-white/20">
                                 <span className="material-symbols-outlined text-4xl md:text-6xl font-light">search</span>
                             </div>
-                            <div className="w-full h-[1px] bg-zinc-200 dark:bg-white/10 mt-2"></div>
+                            <div className="w-full h-[1px] bg-zinc-300 dark:bg-white/10 mt-2"></div>
                         </motion.div>
 
                         <div className="mb-12 h-6">
                             {query.length > 0 && query.length <= 2 && (
-                                <p className="text-zinc-400 dark:text-white/40 text-[11px] uppercase tracking-[3px] font-medium italic animate-pulse">Scanning the void...</p>
+                                <p className="text-zinc-500 dark:text-white/40 text-[11px] uppercase tracking-[3px] font-medium italic animate-pulse">Scanning the void...</p>
                             )}
                         </div>
                         
@@ -74,8 +74,8 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                                             onClick={onClose}
                                             className="group block"
                                         >
-                                            <span className="block text-zinc-400 dark:text-white/30 text-[11px] uppercase tracking-[4px] font-medium mb-4">[{post.topic}]</span>
-                                            <h3 className={`text-3xl md:text-5xl lg:text-6xl font-normal text-zinc-900 dark:text-white transition-all duration-500 group-hover:text-black dark:group-hover:text-white group-hover:italic ${post.title.match(/[\u0900-\u097F]/) ? 'font-hindi' : 'font-display'}`}>
+                                            <span className="block text-zinc-500 dark:text-white/30 text-[11px] uppercase tracking-[4px] font-medium mb-4 group-hover:text-zinc-950 dark:group-hover:text-white transition-colors">[{post.topic}]</span>
+                                            <h3 className={`text-3xl md:text-5xl lg:text-6xl font-normal text-zinc-950 dark:text-white transition-all duration-500 group-hover:text-black dark:group-hover:text-white group-hover:italic ${post.title.match(/[\u0900-\u097F]/) ? 'font-hindi' : 'font-display'}`}>
                                                 {post.title}
                                             </h3>
                                         </Link>
@@ -84,15 +84,15 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                             </div>
                             {query.length > 2 && results.length === 0 && (
                                 <div className="py-20 text-center">
-                                    <p className="text-zinc-400 dark:text-white/30 text-2xl font-display italic">The silence remains absolute.</p>
-                                    <p className="text-zinc-300 dark:text-white/20 text-sm mt-4 uppercase tracking-[2px]">No records found</p>
+                                    <p className="text-zinc-500 dark:text-white/30 text-2xl font-display italic">The silence remains absolute.</p>
+                                    <p className="text-zinc-400 dark:text-white/20 text-sm mt-4 uppercase tracking-[2px]">No records found</p>
                                 </div>
                             )}
                         </div>
                     </div>
 
                     {/* Keyboard Hint */}
-                    <div className="hidden md:flex absolute bottom-8 right-12 items-center space-x-4 text-zinc-400 dark:text-white/30">
+                    <div className="hidden md:flex absolute bottom-8 right-12 items-center space-x-4 text-zinc-500 dark:text-white/30">
                         <span className="text-[10px] uppercase tracking-[2px] font-medium">Esc to close</span>
                     </div>
                 </motion.div>
