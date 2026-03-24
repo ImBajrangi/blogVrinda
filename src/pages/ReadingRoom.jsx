@@ -79,7 +79,7 @@ const ReadingRoom = () => {
                 
                 {/* Play Button - Solid White Circle */}
                 <button className="relative z-20 w-24 h-24 rounded-full bg-white flex items-center justify-center group hover:scale-110 transition-all duration-500 shadow-[0_0_50px_rgba(0,0,0,0.3)] focus:outline-none">
-                    <span className="material-symbols-outlined text-5xl text-[#0A0A0A] ml-2 group-hover:text-primary transition-colors" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+                    <span className="material-symbols-outlined text-5xl text-[#0A0A0A] ml-2 group-hover:text-zinc-600 dark:group-hover:text-zinc-400 transition-colors" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                 </button>
 
                 {/* Overlay Title Block */}
@@ -100,15 +100,15 @@ const ReadingRoom = () => {
 
                     {post.sanskrit && (
                         <div className="my-16 py-12 px-8 border-y border-zinc-200 dark:border-white/10 relative group bg-zinc-100/50 dark:bg-white/5 backdrop-blur-sm rounded-xl transition-colors">
-                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--bg-main)] px-4 font-display text-[11px] uppercase tracking-[4px] text-primary transition-colors">Sacred Sanskrit</span>
-                            <div className="text-2xl md:text-3xl text-center font-serif italic leading-relaxed text-zinc-900 dark:text-white selection:bg-primary/20">
+                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--bg-main)] px-4 font-display text-[11px] uppercase tracking-[4px] text-zinc-400 dark:text-white/40 transition-colors">Sacred Sanskrit</span>
+                            <div className="text-2xl md:text-3xl text-center font-serif italic leading-relaxed text-zinc-900 dark:text-white selection:bg-zinc-900 dark:selection:bg-white selection:text-white dark:selection:text-zinc-900">
                                 {post.sanskrit}
                             </div>
                         </div>
                     )}
                     
                     {post.hindi && (
-                        <div className="hindi-content font-hindi text-2xl md:text-3xl leading-[1.6] text-zinc-800 dark:text-white/90 mb-16 border-l-2 border-primary/30 pl-8 py-4 bg-zinc-100 dark:bg-white/5 rounded-r-2xl transition-colors">
+                        <div className="hindi-content font-hindi text-2xl md:text-3xl leading-[1.6] text-zinc-800 dark:text-white/90 mb-16 border-l-2 border-zinc-200 dark:border-white/20 pl-8 py-4 bg-zinc-100 dark:bg-white/5 rounded-r-2xl transition-colors">
                             {post.hindi}
                         </div>
                     )}
@@ -139,12 +139,12 @@ const ReadingRoom = () => {
             {/* Next Journey Block */}
             {nextPost && (
                 <Link to={`/post/${nextPost.slug}`} className="block bg-[#0A0A0A] text-white py-24 px-6 md:px-12 text-center group cursor-pointer border-t border-white/10 overflow-hidden relative">
-                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-700"></div>
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.03] transition-colors duration-700"></div>
                     <div className="max-w-[680px] mx-auto relative z-10">
                         <p className="text-[13px] uppercase tracking-[2px] text-white/50 mb-6 font-medium">Next Journey</p>
-                        <h2 className="font-display text-4xl md:text-5xl italic group-hover:text-primary transition-colors duration-500 transform group-hover:scale-[1.02]">{nextPost.title}</h2>
+                        <h2 className="font-display text-4xl md:text-5xl italic transition-all duration-500 transform group-hover:scale-[1.02] group-hover:text-white uppercase tracking-[2px]">{nextPost.title}</h2>
                         <div className="mt-12 flex justify-center">
-                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:border-primary group-hover:bg-primary transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(23,23,207,0.3)]">
+                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500">
                                 <span className="material-symbols-outlined text-xl group-hover:animate-bounce">arrow_downward</span>
                             </div>
                         </div>
