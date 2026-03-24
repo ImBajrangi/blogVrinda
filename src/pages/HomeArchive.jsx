@@ -51,40 +51,57 @@ const HomeArchive = () => {
                 </section>
             )}
 
-            {/* Divider */}
-            <div className="w-full h-[1px] bg-zinc-200 dark:bg-white/10 mb-24 relative">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FAFAFA] dark:bg-[#0A0A0A] px-6 text-zinc-400 dark:text-white/40 text-[11px] tracking-[4px] uppercase transition-colors duration-500 font-display">
-                    The Archive
+            {/* Archive Grid Section */}
+            <section className="mb-section px-4 md:px-0">
+                <div className="flex items-center justify-between mb-16">
+                    <h2 className="text-2xl font-normal italic text-zinc-900 dark:text-white font-display">The Archive</h2>
+                    <span className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-white/40">Chronological</span>
                 </div>
-            </div>
 
-            {/* Masonry Archive Grid */}
-            <section className="masonry-grid" style={{ columnCount: 2, columnGap: '4rem' }}>
-                {archivePosts.map((post, idx) => {
-                    const aspectRatios = ['aspect-[4/3]', 'aspect-[3/4]', 'aspect-square', 'aspect-[16/9]'];
-                    const aspectRatio = aspectRatios[idx % aspectRatios.length];
-                    
-                    return (
-                        <article key={idx} className="masonry-item group cursor-pointer bg-white dark:bg-white/5 p-8 rounded-3xl border border-zinc-200 dark:border-white/10 hover:border-black dark:hover:border-white transition-all duration-500 mb-16 break-inside-avoid">
-                            <Link to={`/post/${post.slug}`}>
-                                <div className={`w-full ${aspectRatio} overflow-hidden rounded-[32px] mb-8 relative`}>
-                                    <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale-img transform group-hover:scale-105 transition-transform duration-1000" />
+                {/* 2-Column Floating Masonry */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 items-start">
+                    {archivePosts.map((post, idx) => {
+                        const aspectRatios = ['aspect-[4/3]', 'aspect-[3/4]', 'aspect-square', 'aspect-[16/9]'];
+                        const aspectRatio = aspectRatios[idx % aspectRatios.length];
+                        const isEvenColumn = idx % 2 === 1;
+                        
+                        return (
+                            <Link 
+                                key={post.id} 
+                                to={`/post/${post.slug}`}
+                                className={`group flex flex-col gap-8 transform transition-all duration-700 hover:-translate-y-2 ${isEvenColumn ? 'md:mt-24' : ''}`}
+                            >
+                                <div className={`w-full ${aspectRatio} overflow-hidden rounded-[32px] bg-zinc-100 dark:bg-white/5 relative`}>
+                                    <img 
+                                        src={post.image} 
+                                        alt={post.title} 
+                                        className="w-full h-full object-cover grayscale-img transform group-hover:scale-105 transition-transform duration-1000" 
+                                    />
                                 </div>
-                                <div className="flex flex-col gap-4 px-2">
-                                    <p className="text-zinc-400 dark:text-white/40 text-[11px] font-medium tracking-[2px] uppercase">
-                                        {post.date} · {post.topic}
+                                <div className="flex flex-col gap-4">
+                                    <p className="text-zinc-400 dark:text-white/40 text-[11px] font-medium tracking-[3px] uppercase">
+                                        [{post.date}] · [{post.topic}]
                                     </p>
-                                    <h3 className={`text-3xl font-normal leading-[1.2] text-zinc-900 dark:text-white group-hover:text-black dark:group-hover:text-white title-hover-italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
+                                    <h3 className={`text-3xl md:text-4xl font-normal leading-tight text-zinc-900 dark:text-white group-hover:text-black dark:group-hover:text-white title-hover-italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
                                         {post.title}
                                     </h3>
-                                    <p className={`text-zinc-600 dark:text-white/60 text-base leading-relaxed mt-2 line-clamp-2 ${isHindi(post.excerpt) ? 'font-hindi' : ''}`}>
-                                        {post.excerpt}
-                                    </p>
+                                    {post.excerpt && (
+                                        <p className={`text-zinc-600 dark:text-white/50 text-base leading-relaxed line-clamp-2 max-w-[90%] ${isHindi(post.excerpt) ? 'font-hindi' : 'font-light'}`}>
+                                            {post.excerpt}
+                                        </p>
+                                    )}
                                 </div>
                             </Link>
-                        </article>
-                    );
-                })}
+                        );
+                    })}
+                </div>
+
+                {/* End of Path */}
+                <div className="w-full h-[1px] bg-zinc-200 dark:bg-white/10 mt-40 relative">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FAFAFA] dark:bg-[#0A0A0A] px-10 text-zinc-400 dark:text-white/40 text-[11px] tracking-[6px] uppercase italic transition-colors duration-500">
+                        End of the Path
+                    </div>
+                </div>
             </section>
 
             {/* Load More Emulator */}
