@@ -6,7 +6,12 @@ import { supabase } from '../lib/supabase';
 const mapContentToPost = (item) => {
     // Attempt to extract the first image URL from the array
     const images = item.image_urls || [];
-    const mainImage = images.length > 0 ? images[0] : '/assets/hero.png';
+    let mainImage = images.length > 0 ? images[0] : '/assets/hero.png';
+    
+    // Fix: Professional normalization for broken Unsplash assets reported by user
+    if (mainImage.includes('photo-1499200632172-c516383022d1')) {
+        mainImage = 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1200'; // Peaceful meditation
+    }
     
     const dateObj = new Date(item.created_at);
     const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric' }).toUpperCase();

@@ -58,8 +58,8 @@ const ReadingRoom = () => {
             />
 
             {/* Shared Nav / Back Button */}
-            <header className="fixed top-0 left-0 w-full z-40 p-6 flex items-center justify-between mix-blend-difference text-white pointer-events-none">
-                <Link to="/" className="pointer-events-auto flex items-center gap-2 hover:text-primary transition-colors">
+            <header className="fixed top-0 left-0 w-full z-40 p-4 md:p-6 flex items-center justify-between mix-blend-difference text-white pointer-events-none">
+                <Link to="/" className="pointer-events-auto flex items-center gap-2 hover:text-primary transition-colors mt-16 md:mt-0">
                     <span className="material-symbols-outlined text-2xl">arrow_back</span>
                     <span className="text-sm uppercase tracking-widest font-medium">Return</span>
                 </Link>
