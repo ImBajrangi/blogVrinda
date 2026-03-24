@@ -59,7 +59,7 @@ const ReadingRoom = () => {
 
             {/* Shared Nav / Back Button */}
             <header className="fixed top-0 left-0 w-full z-40 p-6 flex items-center justify-between mix-blend-difference text-white pointer-events-none">
-                <Link to="/" className="pointer-events-auto flex items-center gap-2 hover:opacity-70 transition-opacity">
+                <Link to="/" className="pointer-events-auto flex items-center gap-2 hover:text-primary transition-colors">
                     <span className="material-symbols-outlined text-2xl">arrow_back</span>
                     <span className="text-sm uppercase tracking-widest font-medium">Return</span>
                 </Link>
@@ -76,15 +76,17 @@ const ReadingRoom = () => {
                 </div>
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-cinema-dark via-transparent to-transparent z-10"></div>
-                {/* Play Button */}
-                <button className="relative z-20 w-20 h-20 rounded-full bg-surface-light flex items-center justify-center group hover:scale-105 transition-transform duration-300 shadow-2xl focus:outline-none focus:ring-4 focus:ring-primary/50">
-                    <span className="material-symbols-outlined text-4xl text-cinema-dark ml-1 group-hover:text-primary transition-colors" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+                
+                {/* Play Button - Solid White Circle */}
+                <button className="relative z-20 w-24 h-24 rounded-full bg-white flex items-center justify-center group hover:scale-110 transition-all duration-500 shadow-[0_0_50px_rgba(0,0,0,0.3)] focus:outline-none">
+                    <span className="material-symbols-outlined text-5xl text-[#0A0A0A] ml-2 group-hover:text-primary transition-colors" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
                 </button>
+
                 {/* Overlay Title Block */}
                 <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 pb-12 z-20 translate-y-1/4">
                     <div className="max-w-[680px] mx-auto text-center">
-                        <p className="text-surface-light/70 text-[13px] uppercase tracking-[2px] font-medium mb-4">{post.topic} · {post.date}</p>
-                        <h1 className="text-surface-light font-display text-4xl md:text-6xl lg:text-7xl font-normal leading-tight italic">{post.title}</h1>
+                        <p className="text-white/70 text-[13px] uppercase tracking-[2px] font-medium mb-4">{post.topic} · {post.date}</p>
+                        <h1 className="text-white font-display text-4xl md:text-6xl lg:text-7xl font-normal leading-tight italic">{post.title}</h1>
                     </div>
                 </div>
             </section>

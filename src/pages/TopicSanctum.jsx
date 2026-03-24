@@ -73,7 +73,7 @@ const TopicSanctum = () => {
                                                 <article key={post.id} className="group flex flex-col md:flex-row gap-8 items-center md:items-start w-full border-b border-zinc-200 dark:border-white/10 py-10 hover:bg-white dark:hover:bg-white/[0.02] transition-colors duration-300 px-4 md:-mx-4 md:px-4 rounded-xl cursor-pointer">
                                                     <Link to={`/post/${post.slug}`} className="flex flex-col md:flex-row gap-8 w-full">
                                                         <div className="shrink-0">
-                                                            <div className="w-40 h-40 md:w-[200px] md:h-[200px] rounded-full overflow-hidden bg-zinc-100 dark:bg-white/5 relative grayscale group-hover:grayscale-0 transition-all duration-500">
+                                                            <div className="w-40 h-40 md:w-[200px] md:h-[200px] rounded-[32px] overflow-hidden bg-zinc-100 dark:bg-white/5 relative grayscale group-hover:grayscale-0 transition-all duration-500">
                                                                 <img src={post.image} alt={post.title} className="object-cover w-full h-full" />
                                                             </div>
                                                         </div>
