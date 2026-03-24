@@ -31,22 +31,22 @@ const TopicSanctum = () => {
                             <nav className="lg:w-[300px] shrink-0">
                                 <div className="lg:sticky lg:top-12 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-visible no-scrollbar pb-4 lg:pb-0 border-b border-zinc-200 dark:border-white/10 lg:border-none">
                                     {topics.map((topic) => (
-                                        <Link 
-                                            key={topic}
-                                            to={`/topics/${topic}`}
-                                            className={`group flex items-center text-2xl whitespace-nowrap px-4 py-2 lg:p-0 rounded-full lg:rounded-none transition-all ${
-                                                currentTopic.toLowerCase() === topic.toLowerCase() 
-                                                ? "text-zinc-950 dark:text-white font-bold bg-zinc-100 dark:bg-white/10 lg:bg-transparent" 
-                                                : "text-zinc-400 dark:text-white/40 hover:text-zinc-950 dark:hover:text-white bg-transparent"
-                                            }`}
-                                        >
-                                            <span className={`hidden lg:inline mr-2 transition-transform transform ${
-                                                currentTopic.toLowerCase() === topic.toLowerCase() 
-                                                ? "text-primary translate-x-0" 
-                                                : "text-transparent group-hover:text-zinc-300 dark:group-hover:text-white/20 -translate-x-2 group-hover:translate-x-0"
-                                            }`}>—</span>
-                                            {topic}
-                                        </Link>
+                                            <Link 
+                                                key={topic}
+                                                to={`/topics/${topic}`}
+                                                className={`group flex items-center text-2xl whitespace-nowrap px-4 py-2 lg:p-0 rounded-full lg:rounded-none transition-all ${
+                                                    currentTopic.toLowerCase() === topic.toLowerCase() 
+                                                    ? "text-zinc-950 dark:text-white font-bold bg-zinc-100 dark:bg-white/10 lg:bg-transparent" 
+                                                    : "text-zinc-400 dark:text-white/40 hover:text-black dark:hover:text-white bg-transparent"
+                                                }`}
+                                            >
+                                                <span className={`hidden lg:inline mr-2 transition-transform transform ${
+                                                    currentTopic.toLowerCase() === topic.toLowerCase() 
+                                                    ? "text-zinc-900 dark:text-white translate-x-0" 
+                                                    : "text-transparent group-hover:text-zinc-300 dark:group-hover:text-white/20 -translate-x-2 group-hover:translate-x-0"
+                                                }`}>—</span>
+                                                {topic}
+                                            </Link>
                                     ))}
                                 </div>
                             </nav>
