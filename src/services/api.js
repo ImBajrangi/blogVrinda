@@ -1,4 +1,5 @@
 import { supabase } from '../lib/supabase';
+import { blogPosts } from '../data/wisdom-data';
 
 /**
  * Data mapping helper to normalize Supabase 'content' records to Stitch component props
@@ -37,6 +38,7 @@ const mapContentToPost = (item) => {
 export const api = {
     async fetchPosts(from = 0, to = 9, category = null) {
         try {
+            // Fetch from Supabase
             let queryBuilder = supabase
                 .from('blogvrinda')
                 .select('*')
@@ -46,13 +48,30 @@ export const api = {
                 queryBuilder = queryBuilder.eq('category', category);
             }
 
-            const { data, error } = await queryBuilder.range(from, to);
-
+            const { data: dbData, error } = await queryBuilder;
             if (error) throw error;
-            return data.map(mapContentToPost);
+
+            const dbPosts = dbData.map(mapContentToPost);
+            
+            // Merge with local demo data for thorough testing
+            let allPosts = [...dbPosts];
+            
+            // Add local posts that match category (or all if no category)
+            const localPosts = blogPosts.filter(p => !category || p.topic.toLowerCase() === category.toLowerCase());
+            
+            // Prevent duplicate IDs if some already in DB
+            const dbIds = new Set(dbPosts.map(p => p.id));
+            const uniqueLocal = localPosts.filter(p => !dbIds.has(p.id));
+            
+            allPosts = [...allPosts, ...uniqueLocal];
+
+            // Apply pagination slicing
+            return allPosts.slice(from, to + 1);
         } catch (error) {
             console.error('Error fetching blogvrinda posts:', error);
-            return [];
+            // Fallback to local data only
+            const localPosts = blogPosts.filter(p => !category || p.topic.toLowerCase() === category.toLowerCase());
+            return localPosts.slice(from, to + 1);
         }
     },
 
