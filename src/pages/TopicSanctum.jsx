@@ -81,7 +81,7 @@ const TopicSanctum = () => {
                                                             <div className="text-[13px] uppercase tracking-[2px] text-zinc-400 dark:text-white/40 font-sans font-medium mb-3">
                                                                 {post.date} · 8 min read
                                                             </div>
-                                                            <h3 className={`text-3xl md:text-4xl text-zinc-900 dark:text-white font-medium leading-tight mb-4 group-hover:text-primary transition-colors ${isHindi(post.title) ? 'font-hindi' : ''}`}>
+                                                            <h3 className={`text-3xl md:text-4xl text-zinc-900 dark:text-white font-medium leading-tight mb-4 group-hover:text-black dark:group-hover:text-white group-hover:italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : ''}`}>
                                                                     {post.title}
                                                             </h3>
                                                             <p className={`text-lg text-zinc-600 dark:text-white/60 leading-[1.8] font-sans line-clamp-2 ${isHindi(post.excerpt) ? 'font-hindi' : ''}`}>
