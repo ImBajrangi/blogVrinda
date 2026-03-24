@@ -68,28 +68,30 @@ const TopicSanctum = () => {
                                             </h1>
                                         </div>
 
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col divide-y divide-zinc-200 dark:divide-white/10">
                                             {filteredPosts.map((post) => (
-                                                <article key={post.id} className="group flex flex-col md:flex-row gap-8 items-center md:items-start w-full border-b border-zinc-200 dark:border-white/10 py-10 hover:bg-white dark:hover:bg-white/[0.02] transition-colors duration-300 px-4 md:-mx-4 md:px-4 rounded-xl cursor-pointer">
-                                                    <Link to={`/post/${post.slug}`} className="flex flex-col md:flex-row gap-8 w-full">
-                                                        <div className="shrink-0">
-                                                            <div className="w-40 h-40 md:w-[200px] md:h-[200px] rounded-[32px] overflow-hidden bg-zinc-100 dark:bg-white/5 relative grayscale group-hover:grayscale-0 transition-all duration-500">
-                                                                <img src={post.image} alt={post.title} className="object-cover w-full h-full" />
-                                                            </div>
+                                                <Link 
+                                                    key={post.id} 
+                                                    to={`/post/${post.slug}`} 
+                                                    className="group flex flex-col md:flex-row gap-8 md:gap-12 py-12 md:py-16 hover:bg-zinc-50/50 dark:hover:bg-white/[0.01] transition-all duration-500 -mx-4 px-4 rounded-2xl"
+                                                >
+                                                    <div className="shrink-0">
+                                                        <div className="w-full md:w-[260px] aspect-square rounded-[32px] overflow-hidden bg-zinc-100 dark:bg-white/5 relative grayscale group-hover:grayscale-0 transition-all duration-700">
+                                                            <img src={post.image} alt={post.title} className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-1000" />
                                                         </div>
-                                                        <div className="flex flex-col flex-1 justify-center md:pt-4 text-center md:text-left">
-                                                            <div className="text-[13px] uppercase tracking-[2px] text-zinc-400 dark:text-white/40 font-sans font-medium mb-3">
-                                                                {post.date} · 8 min read
-                                                            </div>
-                                                            <h3 className={`text-3xl md:text-4xl text-zinc-900 dark:text-white font-medium leading-tight mb-4 group-hover:text-black dark:group-hover:text-white group-hover:italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : ''}`}>
-                                                                    {post.title}
-                                                            </h3>
-                                                            <p className={`text-lg text-zinc-600 dark:text-white/60 leading-[1.8] font-sans line-clamp-2 ${isHindi(post.excerpt) ? 'font-hindi' : ''}`}>
-                                                                {post.excerpt}
-                                                            </p>
+                                                    </div>
+                                                    <div className="flex flex-col flex-1 justify-center">
+                                                        <div className="text-[11px] uppercase tracking-[3px] text-zinc-400 dark:text-white/40 font-medium mb-4">
+                                                            [{post.date}] · [8 min read]
                                                         </div>
-                                                    </Link>
-                                                </article>
+                                                        <h3 className={`text-3xl md:text-5xl text-zinc-900 dark:text-white font-normal leading-tight mb-4 group-hover:text-black dark:group-hover:text-white group-hover:italic transition-all duration-500 ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
+                                                                {post.title}
+                                                        </h3>
+                                                        <p className={`text-lg text-zinc-600 dark:text-white/50 leading-relaxed line-clamp-2 max-w-[600px] ${isHindi(post.excerpt) ? 'font-hindi' : 'font-light'}`}>
+                                                            {post.excerpt}
+                                                        </p>
+                                                    </div>
+                                                </Link>
                                             ))}
                                             {filteredPosts.length === 0 && (
                                                 <p className="py-20 text-center text-zinc-400 dark:text-white/40 italic">The archives for {currentTopic} are yet to be transcribed.</p>
