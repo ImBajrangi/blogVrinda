@@ -90,35 +90,35 @@ const ReadingRoom = () => {
             </section>
 
             {/* Transcript / Context Area */}
-            <section className="relative z-20 bg-surface-light pt-32 pb-24 px-6 md:px-12">
-                <article className="max-w-[680px] mx-auto text-lg leading-[1.8] text-text-main space-y-12">
-                    <p className="text-xl md:text-2xl leading-relaxed text-text-muted first-letter:text-5xl first-letter:font-display first-letter:mr-2 first-letter:float-left first-letter:text-cinema-dark font-light italic">
+            <section className="relative z-20 bg-[#FAFAFA] dark:bg-surface-light pt-32 pb-24 px-6 md:px-12 transition-colors duration-500">
+                <article className="max-w-[680px] mx-auto text-lg leading-[1.8] text-zinc-950 dark:text-text-main space-y-12">
+                    <p className="text-xl md:text-2xl leading-relaxed text-zinc-500 dark:text-text-muted first-letter:text-5xl first-letter:font-display first-letter:mr-2 first-letter:float-left first-letter:text-zinc-900 dark:first-letter:text-cinema-dark font-light italic">
                         {post.excerpt}
                     </p>
 
                     {post.sanskrit && (
-                        <div className="my-16 py-12 px-8 border-y border-cinema-dark/10 relative group bg-white/50 backdrop-blur-sm rounded-xl">
-                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-surface-light px-4 font-display text-[11px] uppercase tracking-[4px] text-primary">Sacred Sanskrit</span>
-                            <div className="text-2xl md:text-3xl text-center font-serif italic leading-relaxed text-cinema-dark selection:bg-primary/20">
+                        <div className="my-16 py-12 px-8 border-y border-zinc-200 dark:border-cinema-dark/10 relative group bg-zinc-100/50 dark:bg-white/5 backdrop-blur-sm rounded-xl transition-colors">
+                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FAFAFA] dark:bg-surface-light px-4 font-display text-[11px] uppercase tracking-[4px] text-primary transition-colors">Sacred Sanskrit</span>
+                            <div className="text-2xl md:text-3xl text-center font-serif italic leading-relaxed text-zinc-900 dark:text-cinema-dark selection:bg-primary/20">
                                 {post.sanskrit}
                             </div>
                         </div>
                     )}
                     
                     {post.hindi && (
-                        <div className="hindi-content font-hindi text-2xl md:text-3xl leading-[1.6] text-text-main/90 mb-16 border-l-2 border-primary/30 pl-8 py-4 bg-white/30 rounded-r-2xl">
+                        <div className="hindi-content font-hindi text-2xl md:text-3xl leading-[1.6] text-zinc-800 dark:text-text-main/90 mb-16 border-l-2 border-primary/30 pl-8 py-4 bg-zinc-100 dark:bg-white/30 rounded-r-2xl transition-colors">
                             {post.hindi}
                         </div>
                     )}
 
                     {post.english && (
-                        <div className="prose-wisdom rich-text whitespace-pre-line text-text-main text-lg md:text-xl font-light leading-relaxed">
+                        <div className="prose-wisdom rich-text whitespace-pre-line text-zinc-900 dark:text-text-main text-lg md:text-xl font-light leading-relaxed">
                             {post.english}
                         </div>
                     )}
 
                     {!post.hindi && !post.english && (
-                        <div className="prose-wisdom rich-text whitespace-pre-line text-text-main text-lg md:text-xl font-light leading-relaxed">
+                        <div className="prose-wisdom rich-text whitespace-pre-line text-zinc-900 dark:text-text-main text-lg md:text-xl font-light leading-relaxed">
                             {post.content || "Silence is the language of the soul..."}
                         </div>
                     )}
@@ -129,20 +129,20 @@ const ReadingRoom = () => {
                             className="w-full h-auto rounded-[32px] grayscale hover:grayscale-0 transition-all duration-1000 object-cover shadow-2xl" 
                             alt={post.title} 
                         />
-                        <figcaption className="mt-6 text-center text-[13px] uppercase tracking-[2px] text-text-muted font-medium italic opacity-60">The observer and the observed merge into one.</figcaption>
+                        <figcaption className="mt-6 text-center text-[13px] uppercase tracking-[2px] text-zinc-400 dark:text-text-muted font-medium italic opacity-60">The observer and the observed merge into one.</figcaption>
                     </figure>
                 </article>
             </section>
 
             {/* Next Journey Block */}
             {nextPost && (
-                <Link to={`/post/${nextPost.slug}`} className="block bg-cinema-dark text-surface-light py-24 px-6 md:px-12 text-center group cursor-pointer border-t border-white/10 overflow-hidden relative">
+                <Link to={`/post/${nextPost.slug}`} className="block bg-[#0A0A0A] text-white py-24 px-6 md:px-12 text-center group cursor-pointer border-t border-white/10 overflow-hidden relative">
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-700"></div>
                     <div className="max-w-[680px] mx-auto relative z-10">
-                        <p className="text-[13px] uppercase tracking-[2px] text-surface-light/50 mb-6">Next Journey</p>
+                        <p className="text-[13px] uppercase tracking-[2px] text-white/50 mb-6 font-medium">Next Journey</p>
                         <h2 className="font-display text-4xl md:text-5xl italic group-hover:text-primary transition-colors duration-500 transform group-hover:scale-[1.02]">{nextPost.title}</h2>
                         <div className="mt-12 flex justify-center">
-                            <div className="w-12 h-12 rounded-full border border-surface-light/30 flex items-center justify-center group-hover:border-primary group-hover:bg-primary transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(23,23,207,0.3)]">
+                            <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:border-primary group-hover:bg-primary transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(23,23,207,0.3)]">
                                 <span className="material-symbols-outlined text-xl group-hover:animate-bounce">arrow_downward</span>
                             </div>
                         </div>

@@ -7,28 +7,33 @@
 :root {
     --primary: #1717cf;
     --divine-gold: #d4af37;
-    --obsidian-bg: #0A0A0A;
-    --obsidian-glass: rgba(255, 255, 255, 0.03);
-    --obsidian-border: rgba(255, 255, 255, 0.08);
-    --text-main: #FFFFFF;
-    --text-muted: rgba(255, 255, 255, 0.6);
+    --bg-main: #FAFAFA;
+    --bg-glass: rgba(0, 0, 0, 0.03);
+    --border-main: rgba(0, 0, 0, 0.08);
+    --text-main: #1A1A1A;
+    --text-muted: #8C8C8C;
     --font-serif: 'Newsreader', serif;
     --font-sans: 'Poppins', 'Inter', system-ui, sans-serif;
     --font-hindi: 'Mukta', sans-serif;
-    --font-hindi-display: 'Laila', serif;
-    --font-hindi-modern: 'Poppins', sans-serif;
-    --font-hindi-sacred: 'Teko', sans-serif;
-    --font-hindi-handwritten: 'Kalam', cursive;
     --transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.dark {
+    --bg-main: #0A0A0A;
+    --bg-glass: rgba(255, 255, 255, 0.03);
+    --border-main: rgba(255, 255, 255, 0.08);
+    --text-main: #FFFFFF;
+    --text-muted: rgba(255, 255, 255, 0.6);
+}
+
 body {
-    background: var(--obsidian-bg);
+    background: var(--bg-main);
     color: var(--text-main);
     font-family: var(--font-sans);
     margin: 0;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 ::selection {

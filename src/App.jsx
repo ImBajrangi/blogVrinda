@@ -14,7 +14,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="min-h-screen bg-[#0A0A0A] flex flex-col text-white">
+        <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#0A0A0A] flex flex-col text-zinc-900 dark:text-white transition-colors duration-500">
           <Navbar onSearchOpen={() => setIsSearchOpen(true)} />
           <Routes>
             <Route path="/" element={<HomeArchive />} />
@@ -23,7 +23,7 @@ function App() {
             <Route path="/topics" element={<TopicSanctum />} />
           </Routes>
           <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-          <footer className="py-24 border-t border-white/10 text-center text-white/40 text-sm uppercase tracking-[0.1em]">
+          <footer className="py-24 border-t border-zinc-200 dark:border-white/10 text-center text-zinc-500 dark:text-white/40 text-sm uppercase tracking-[0.1em]">
             &copy; 2026 Vrindopnishad — The Silence of Wisdom
           </footer>
         </div>

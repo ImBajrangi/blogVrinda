@@ -36,13 +36,13 @@ const HomeArchive = () => {
                                 <span className="w-8 h-[1px] bg-primary"></span>
                                 {featuredPost.date} · {featuredPost.topic}
                             </p>
-                            <h1 className={`text-5xl md:text-[72px] font-normal leading-[1.1] text-white mb-8 title-hover-italic ${isHindi(featuredPost.title) ? 'font-hindi' : 'font-display'}`}>
+                            <h1 className={`text-5xl md:text-[72px] font-normal leading-[1.1] text-zinc-900 dark:text-white mb-8 title-hover-italic ${isHindi(featuredPost.title) ? 'font-hindi' : 'font-display'}`}>
                                 {featuredPost.title}
                             </h1>
-                            <p className={`text-white/60 text-lg leading-[1.8] mb-8 line-clamp-3 ${isHindi(featuredPost.excerpt) ? 'font-hindi' : 'font-light'}`}>
+                            <p className={`text-zinc-600 dark:text-white/60 text-lg leading-[1.8] mb-8 line-clamp-3 ${isHindi(featuredPost.excerpt) ? 'font-hindi' : 'font-light'}`}>
                                 {featuredPost.excerpt}
                             </p>
-                            <div className="flex items-center gap-3 text-sm font-medium text-white group-hover:text-primary transition-colors">
+                            <div className="flex items-center gap-3 text-sm font-medium text-zinc-900 dark:text-white group-hover:text-primary transition-colors">
                                 <span>Begin Journey</span>
                                 <span className="material-symbols-outlined text-sm transform group-hover:translate-x-2 transition-transform">arrow_forward</span>
                             </div>
@@ -52,8 +52,8 @@ const HomeArchive = () => {
             )}
 
             {/* Divider */}
-            <div className="w-full h-[1px] bg-white/10 mb-24 relative">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#0A0A0A] px-4 text-white/40 text-[13px] tracking-[0.2em] uppercase">
+            <div className="w-full h-[1px] bg-zinc-200 dark:bg-white/10 mb-24 relative">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#FAFAFA] dark:bg-[#0A0A0A] px-4 text-zinc-400 dark:text-white/40 text-[13px] tracking-[0.2em] uppercase transition-colors duration-500">
                     The Archive
                 </div>
             </div>
@@ -61,19 +61,19 @@ const HomeArchive = () => {
             {/* Masonry Archive Grid */}
             <section className="masonry-grid">
                 {archivePosts.map((post) => (
-                    <article key={post.id} className="masonry-item group cursor-pointer bg-white/5 p-6 rounded-3xl border border-white/10 hover:border-primary transition-colors duration-300">
+                    <article key={post.id} className="masonry-item group cursor-pointer bg-white dark:bg-white/5 p-6 rounded-3xl border border-zinc-200 dark:border-white/10 hover:border-primary transition-colors duration-300">
                         <Link to={`/post/${post.slug}`}>
-                            <div className={`w-full ${post.aspectRatio} overflow-hidden rounded-full mb-6`}>
+                            <div className={`w-full ${post.aspectRatio} overflow-hidden rounded-full mb-6 relative`}>
                                 <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale-img" />
                             </div>
                             <div className="flex flex-col gap-3 px-2">
-                                <p className="text-white/40 text-[13px] font-medium tracking-[0.1em] uppercase">
+                                <p className="text-zinc-400 dark:text-white/40 text-[13px] font-medium tracking-[0.1em] uppercase">
                                     {post.date} · {post.topic}
                                 </p>
-                                <h3 className={`text-3xl font-normal leading-[1.2] text-white title-hover-italic ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
+                                <h3 className={`text-3xl font-normal leading-[1.2] text-zinc-900 dark:text-white title-hover-italic ${isHindi(post.title) ? 'font-hindi' : 'font-display'}`}>
                                     {post.title}
                                 </h3>
-                                <p className={`text-white/60 text-base leading-relaxed mt-2 line-clamp-2 ${isHindi(post.excerpt) ? 'font-hindi' : ''}`}>
+                                <p className={`text-zinc-600 dark:text-white/60 text-base leading-relaxed mt-2 line-clamp-2 ${isHindi(post.excerpt) ? 'font-hindi' : ''}`}>
                                     {post.excerpt}
                                 </p>
                             </div>
@@ -84,7 +84,7 @@ const HomeArchive = () => {
 
             {/* Load More Emulator */}
             <div className="mt-24 flex justify-center">
-                <button className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 group">
+                <button className="w-16 h-16 rounded-full border border-zinc-200 dark:border-white/10 flex items-center justify-center text-zinc-900 dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 group">
                     <span className="material-symbols-outlined text-2xl group-hover:animate-bounce">arrow_downward</span>
                 </button>
             </div>
