@@ -9,9 +9,14 @@ const Navbar = ({ onSearchOpen }) => (
                 <div className="layout-content-container flex flex-col w-full max-w-[1200px] flex-1">
                     <header className="flex items-center justify-between h-[80px]">
                         <Link to="/" className="flex items-center gap-3 md:gap-4 text-zinc-900 dark:text-white shrink-0">
-                            <div className="size-5 md:size-6 text-primary">
-                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+                            <div className="size-5 md:size-6 text-primary flex items-center justify-center">
+                                <svg 
+                                    fill="currentColor" 
+                                    viewBox="0 0 48 48" 
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    style={{ width: '24px', height: '24px' }}
+                                >
+                                    <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
                                 </svg>
                             </div>
                             <h2 className="text-zinc-900 dark:text-white text-lg md:text-2xl font-bold leading-tight tracking-[-0.015em] hover:text-primary transition-colors cursor-pointer truncate">Vrindopnishad</h2>

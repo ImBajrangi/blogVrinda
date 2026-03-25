@@ -44,7 +44,7 @@ const SearchOverlay = ({ isOpen, onClose }) => {
                                 autoFocus
                                 type="text" 
                                 placeholder="What do you seek?" 
-                                className="w-full bg-transparent border-none py-8 pr-16 text-4xl md:text-6xl lg:text-[100px] font-normal text-zinc-950 dark:text-white outline-none focus:ring-0 placeholder:italic placeholder:text-zinc-300 dark:placeholder:text-white/20 font-display leading-tight"
+                                className="w-full bg-transparent border-none py-8 pr-16 text-4xl md:text-6xl lg:text-[100px] font-normal text-zinc-950 dark:text-white outline-none focus:ring-0 placeholder:italic placeholder:text-zinc-500 dark:placeholder:text-white/20 font-display leading-tight"
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                             />

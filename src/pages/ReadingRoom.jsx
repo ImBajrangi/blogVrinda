@@ -6,18 +6,23 @@ import { Helmet } from 'react-helmet-async'
 
 const ReadingRoom = () => {
     const { slug } = useParams();
-    const { getPostBySlug, loading, posts } = useWisdom();
-    const post = getPostBySlug(slug);
+    const { fetchPostBySlug, currentPost: post, loading, posts } = useWisdom();
 
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        if (slug) {
+            fetchPostBySlug(slug);
+        }
     }, [slug]);
 
-    if (loading) return <div className="p-20 text-center font-display">Opening Wisdom...</div>;
-    if (!post) return <div className="p-20 text-center font-display">Not Found.</div>;
+    if (loading && !post) return <div className="p-20 text-center font-display italic animate-pulse text-zinc-400">Opening Wisdom...</div>;
+    if (!post && !loading) return <div className="p-20 text-center font-display flex flex-col items-center gap-6">
+        <p className="text-zinc-500 italic">This wisdom remains obscured.</p>
+        <Link to="/" className="text-xs uppercase tracking-[4px] border border-zinc-200 dark:border-white/10 px-6 py-3 rounded-full hover:bg-black hover:text-white transition-all">Return to Path</Link>
+    </div>;
 
     const nextPost = posts.find(p => p.slug !== post.slug);
 

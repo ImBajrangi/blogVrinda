@@ -1,21 +1,13 @@
 import React, { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useWisdom } from '../hooks/useWisdom'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import LoadingDots from '../components/LoadingDots'
 
 const TopicSanctum = () => {
     const { category } = useParams();
     const { posts, categories, loading, loadingMore, hasMore, loadMore } = useWisdom(category);
-    const loadMoreRef = useRef(null);
-    const isInView = useInView(loadMoreRef, { margin: "200px" });
-
-    useEffect(() => {
-        if (isInView && hasMore && !loadingMore && posts.length > 0) {
-            loadMore();
-        }
-    }, [isInView, hasMore, loadingMore, posts.length]);
 
     if (loading) return <div className="p-20 text-center font-display italic animate-pulse text-zinc-400">Seeking topics in the silence...</div>;
 
@@ -107,12 +99,32 @@ const TopicSanctum = () => {
                                             )}
                                         </div>
 
-                                        <div ref={loadMoreRef} className="py-20 flex flex-col items-center">
-                                            {loadingMore && <LoadingDots />}
-                                            {!hasMore && posts.length > 0 && (
-                                                <div className="w-16 h-[1px] bg-zinc-200 dark:bg-white/10"></div>
-                                            )}
-                                        </div>
+                                        <div className="flex flex-col items-center justify-center py-24 md:py-32">
+                    {loadingMore ? (
+                        <LoadingDots />
+                    ) : hasMore ? (
+                        <motion.button
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={loadMore}
+                            className="group relative flex items-center gap-4 px-10 py-5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 text-zinc-900 dark:text-white transition-all duration-500 hover:border-zinc-950 dark:hover:border-white hover:bg-zinc-950 dark:hover:bg-white hover:text-white dark:hover:text-black overflow-hidden"
+                        >
+                            <span className="text-[11px] uppercase tracking-[4px] font-medium relative z-10 italic">
+                                Load More From {currentTopic}
+                            </span>
+                            <span className="material-symbols-outlined text-sm relative z-10 transition-transform group-hover:translate-x-1">arrow_forward</span>
+                        </motion.button>
+                    ) : (
+                        <div className="flex flex-col items-center gap-4 py-12">
+                            <div className="w-12 h-[1px] bg-zinc-200 dark:bg-white/10"></div>
+                            <p className="text-zinc-400 dark:text-white/20 text-[10px] uppercase tracking-[4px] font-medium italic">
+                                No more entries in this sanctum
+                            </p>
+                        </div>
+                    )}
+                </div>
                                     </motion.div>
                                 </AnimatePresence>
                             </main>

@@ -2,74 +2,86 @@ import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 
 export const useWisdom = (initialCategory = null) => {
+    const [currentCategory, setCurrentCategory] = useState(initialCategory || null);
     const [posts, setPosts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
-    const [currentCategory, setCurrentCategory] = useState(initialCategory);
     const POSTS_PER_PAGE = 6;
 
+    // Sync state if initialCategory changes (e.g. route change)
     useEffect(() => {
-        if (initialCategory !== currentCategory) {
-            setCurrentCategory(initialCategory);
-            setPage(0);
-            setHasMore(true);
-        }
+        setCurrentCategory(initialCategory || null);
+        setPage(0);
+        setHasMore(true);
+        setPosts([]);
     }, [initialCategory]);
 
     useEffect(() => {
-        const loadInitialWisdom = async () => {
+        const fetchInitialData = async () => {
             setLoading(true);
-            const [postsData, catsData] = await Promise.all([
-                api.fetchPosts(0, POSTS_PER_PAGE - 1, currentCategory),
-                api.fetchCategories()
-            ]);
-            setPosts(postsData);
-            setCategories(catsData);
-            setLoading(false);
-            if (postsData.length < POSTS_PER_PAGE) setHasMore(false);
+            try {
+                const [postsData, catsData] = await Promise.all([
+                    api.fetchPosts(0, POSTS_PER_PAGE, currentCategory),
+                    api.fetchCategories()
+                ]);
+                
+                setPosts(postsData.posts);
+                setHasMore(postsData.posts.length < postsData.total);
+                setCategories(catsData);
+                setPage(0);
+            } catch (err) {
+                console.error("Initial fetch failed", err);
+            } finally {
+                setLoading(false);
+            }
         };
-        loadInitialWisdom();
+        fetchInitialData();
     }, [currentCategory]);
 
     const loadMore = async () => {
-        if (loadingMore || !hasMore) return;
-        setLoadingMore(true);
-        const nextPage = page + 1;
-        const from = nextPage * POSTS_PER_PAGE;
-        const to = from + POSTS_PER_PAGE - 1;
-        
-        const newPosts = await api.fetchPosts(from, to, currentCategory);
-        if (newPosts.length > 0) {
-            setPosts(prev => [...prev, ...newPosts]);
-            setPage(nextPage);
+        if (hasMore && !loadingMore) {
+            setLoadingMore(true);
+            try {
+                const nextPage = page + 1;
+                const { posts: newPosts, total } = await api.fetchPosts(nextPage, POSTS_PER_PAGE, currentCategory);
+                
+                if (newPosts.length > 0) {
+                    const combinedPosts = [...posts, ...newPosts];
+                    setPosts(combinedPosts);
+                    setPage(nextPage);
+                    setHasMore(combinedPosts.length < total);
+                } else {
+                    setHasMore(false);
+                }
+            } catch (err) {
+                console.error("Load more failed", err);
+            } finally {
+                setLoadingMore(false);
+            }
         }
-        
-        if (newPosts.length < POSTS_PER_PAGE) {
-            setHasMore(false);
-        }
-        
-        setLoadingMore(false);
     };
 
     const getPostById = (id) => {
         return posts.find(post => post.id === id);
     };
 
-    const getPostBySlug = (slug) => {
-        return posts.find(post => post.slug === slug);
+    const [currentPost, setCurrentPost] = useState(null);
+
+    const fetchPostBySlug = async (slug) => {
+        setLoading(true);
+        try {
+            const post = await api.fetchPostBySlug(slug);
+            setCurrentPost(post);
+        } catch (err) {
+            console.error("Fetch post failed", err);
+            setCurrentPost(null);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    return {
-        posts: posts,
-        categories,
-        loading,
-        loadingMore,
-        hasMore,
-        loadMore,
-        getPostById,
-        getPostBySlug
-    };
+    return { posts, categories, currentPost, loading, loadingMore, hasMore, loadMore, fetchPostBySlug };
 };

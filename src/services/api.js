@@ -36,45 +36,73 @@ const mapContentToPost = (item) => {
 };
 
 export const api = {
-    async fetchPosts(from = 0, to = 9, category = null) {
+    async fetchPosts(page = 0, limit = 6, category = null) {
         try {
             // Fetch from Supabase
             let queryBuilder = supabase
                 .from('blogvrinda')
-                .select('*')
+                .select('*', { count: 'exact' })
                 .order('created_at', { ascending: false });
 
             if (category) {
                 queryBuilder = queryBuilder.eq('category', category);
             }
 
-            const { data: dbData, error } = await queryBuilder;
-            if (error) throw error;
+            const { data: dbData, error, count: dbCount } = await queryBuilder;
+            if (error) {
+                console.error('Supabase fetch error:', error);
+            }
 
-            const dbPosts = dbData.map(mapContentToPost);
+            const dbPosts = (dbData || []).map(mapContentToPost);
             
-            // Merge with local demo data for thorough testing
-            let allPosts = [...dbPosts];
-            
-            // Add local posts that match category (or all if no category)
+            // Merge with local demo data
             const localPosts = blogPosts.filter(p => !category || p.topic.toLowerCase() === category.toLowerCase());
             
-            // Prevent duplicate IDs if some already in DB
+            // Prevent duplicate IDs
             const dbIds = new Set(dbPosts.map(p => p.id));
             const uniqueLocal = localPosts.filter(p => !dbIds.has(p.id));
             
-            allPosts = [...allPosts, ...uniqueLocal];
+            const allPosts = [...uniqueLocal, ...dbPosts];
 
-            // Apply pagination slicing
-            return allPosts.slice(from, to + 1);
+            // Apply pagination slicing correctly
+            const from = page * limit;
+            const to = from + limit;
+            
+            return {
+                posts: allPosts.slice(from, to),
+                total: allPosts.length
+            };
         } catch (error) {
             console.error('Error fetching blogvrinda posts:', error);
-            // Fallback to local data only
             const localPosts = blogPosts.filter(p => !category || p.topic.toLowerCase() === category.toLowerCase());
-            return localPosts.slice(from, to + 1);
+            const from = page * limit;
+            const to = from + limit;
+            return {
+                posts: localPosts.slice(from, to),
+                total: localPosts.length
+            };
         }
     },
 
+    async fetchPostBySlug(slug) {
+        // Check local first
+        const local = blogPosts.find(p => p.slug === slug);
+        if (local) return local;
+
+        try {
+            const { data, error } = await supabase
+                .from('blogvrinda')
+                .select('*')
+                .eq('slug', slug)
+                .single();
+
+            if (error) throw error;
+            return mapContentToPost(data);
+        } catch (error) {
+            console.error('Error fetching post by slug:', error);
+            return null;
+        }
+    },
     async fetchCategories() {
         try {
             const { data, error } = await supabase
