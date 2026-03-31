@@ -7,6 +7,7 @@ import TopicSanctum from './pages/TopicSanctum'
 
 import Navbar from './components/Navbar'
 import SearchOverlay from './components/SearchOverlay'
+import Seo from './components/Seo'
 
 function App() {
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
@@ -15,6 +16,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#0A0A0A] flex flex-col text-zinc-900 dark:text-white transition-colors duration-500">
+          <Seo />
           <Navbar onSearchOpen={() => setIsSearchOpen(true)} />
           <Routes>
             <Route path="/" element={<HomeArchive />} />

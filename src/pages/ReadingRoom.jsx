@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useWisdom } from '../hooks/useWisdom'
 import { motion, useScroll, useSpring } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
+import Seo from '../components/Seo'
 
 const ReadingRoom = () => {
     const { slug } = useParams();
@@ -43,18 +43,13 @@ const ReadingRoom = () => {
 
     return (
         <main>
-            <Helmet>
-                <title>{post.title} — Vrindopnishad</title>
-                <meta name="description" content={post.excerpt} />
-                <meta property="og:title" content={post.title} />
-                <meta property="og:description" content={post.excerpt} />
-                <meta property="og:image" content={post.image} />
-                <meta property="og:type" content="article" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <script type="application/ld+json">
-                    {JSON.stringify(jsonLd)}
-                </script>
-            </Helmet>
+            <Seo 
+                title={post.title} 
+                description={post.excerpt} 
+                image={post.image} 
+                article={true} 
+                slug={post.slug}
+            />
 
             {/* Progress Bar */}
             <motion.div 

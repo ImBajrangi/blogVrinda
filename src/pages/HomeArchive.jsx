@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useWisdom } from '../hooks/useWisdom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Helmet } from 'react-helmet-async'
 import LoadingDots from '../components/LoadingDots'
+import Seo from '../components/Seo'
 
 const HomeArchive = () => {
     const { posts, loading, loadingMore, hasMore, loadMore } = useWisdom();
@@ -17,9 +17,7 @@ const HomeArchive = () => {
 
     return (
         <main className="w-full max-w-[1200px] mx-auto px-6 md:px-10 lg:px-[120px] pb-32 pt-10">
-            <Helmet>
-                <title>Vrindopnishad — Home Archive</title>
-            </Helmet>
+            <Seo title="Home Archive" />
 
             {/* Featured Marquee */}
             {featuredPost && (
